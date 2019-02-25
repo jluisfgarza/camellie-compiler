@@ -37,7 +37,7 @@
 
 - Eat : decreases hunger
 - Play : increases fun, increases money
-  - Create mini game, maybe?
+- Create mini game, maybe?
 - Take medicine : increases health
 - Bath : increases hygiene
 - Poop : decreases hygiene (timed action)
@@ -55,11 +55,17 @@
 ### Shop Variables:
 
 - Items for sale (list?)
+  <<<<<<< HEAD
   - Apple : decreases hunger
   - Toy : increases fun
-  - Medicine : increases health
+  - # Medicine : increases health
+- Apple : decreases hunger
+- Toy : increases fun
+- Medicine : increases health
+  > > > > > > > 5163be1e18d4d129aca78ae5c097bf149e9a4289
 
 ---
+
 ## Graphics req:
 
 ## Alebrije
@@ -88,7 +94,8 @@
 ## Language
 
 ### TOKENS
-- *all homework 3 tokens*
+
+- _all homework 3 tokens_
 - `++`
 - `--`
 - `&&`
