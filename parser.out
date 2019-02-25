@@ -1,0 +1,229 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    PROGRAM
+
+Grammar
+
+Rule 0     S' -> VARS
+Rule 1     VARS -> VAR ID VARS_P
+Rule 2     VARS_P -> COMMA ID VARS_P
+Rule 3     VARS_P -> COLON TYPE SEMICOLON
+Rule 4     VARS_P -> COLON TYPE SEMICOLON VARS_P
+Rule 5     TYPE -> INT_TYPE
+Rule 6     TYPE -> FLOAT_TYPE
+Rule 7     BLOQUE -> LEFT_BRACE RIGHT_BRACE
+Rule 8     BLOQUE -> LEFT_BRACE ESTATUTO BLOQUE_P
+Rule 9     BLOQUE_P -> ESTATUTO BLOQUE_P
+Rule 10    BLOQUE_P -> RIGHT_BRACE
+Rule 11    ESTATUTO -> ASIGNACION
+Rule 12    ESTATUTO -> CONDICION
+Rule 13    ESTATUTO -> ESCRITURA
+Rule 14    ASIGNACION -> ID EQUALS EXPRESION SEMICOLON
+Rule 15    ESCRITURA -> PRINT LEFT_PARENTHESIS EXPRESION ESCRITURA_P
+Rule 16    ESCRITURA -> PRINT LEFT_PARENTHESIS STRING ESCRITURA_P
+Rule 17    ESCRITURA_P -> COMMA EXPRESION ESCRITURA_P
+Rule 18    ESCRITURA_P -> COMMA STRING ESCRITURA_P
+Rule 19    ESCRITURA_P -> RIGHT_PARENTHESIS SEMICOLON
+Rule 20    EXPRESION -> EXP EXPRESION_P
+Rule 21    EXPRESION_P -> GREATER_THAN EXP
+Rule 22    EXPRESION_P -> LESS_THAN EXP
+Rule 23    EXPRESION_P -> NOT_EQUAL EXP
+Rule 24    EXPRESION_P -> EMPTY
+Rule 25    CONDICION -> IF LEFT_PARENTHESIS EXPRESION RIGHT_PARENTHESIS BLOQUE CONDICION_P
+Rule 26    CONDICION_P -> ELSE BLOQUE SEMICOLON
+Rule 27    CONDICION_P -> SEMICOLON
+Rule 28    EXP -> TERMINO EXP_P
+Rule 29    EXP_P -> PLUS TERMINO EXP_P
+Rule 30    EXP_P -> MINUS TERMINO EXP_P
+Rule 31    EXP_P -> EMPTY
+Rule 32    TERMINO -> FACTOR TERMINO_P
+Rule 33    TERMINO_P -> MULTIPLY FACTOR TERMINO_P
+Rule 34    TERMINO_P -> DIVIDE FACTOR TERMINO_P
+Rule 35    TERMINO_P -> EMPTY
+Rule 36    FACTOR -> LEFT_PARENTHESIS EXPRESION RIGHT_PARENTHESIS
+Rule 37    FACTOR -> VARCTE
+Rule 38    FACTOR -> MINUS VARCTE
+Rule 39    FACTOR -> PLUS VARCTE
+Rule 40    VARCTE -> ID
+Rule 41    VARCTE -> INT
+Rule 42    VARCTE -> FLOAT
+Rule 43    EMPTY -> <empty>
+
+Terminals, with rules where they appear
+
+COLON                : 3 4
+COMMA                : 2 17 18
+DIVIDE               : 34
+ELSE                 : 26
+EQUALS               : 14
+FLOAT                : 42
+FLOAT_TYPE           : 6
+GREATER_THAN         : 21
+ID                   : 1 2 14 40
+IF                   : 25
+INT                  : 41
+INT_TYPE             : 5
+LEFT_BRACE           : 7 8
+LEFT_PARENTHESIS     : 15 16 25 36
+LESS_THAN            : 22
+MINUS                : 30 38
+MULTIPLY             : 33
+NOT_EQUAL            : 23
+PLUS                 : 29 39
+PRINT                : 15 16
+PROGRAM              : 
+RIGHT_BRACE          : 7 10
+RIGHT_PARENTHESIS    : 19 25 36
+SEMICOLON            : 3 4 14 19 26 27
+STRING               : 16 18
+VAR                  : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+ASIGNACION           : 11
+BLOQUE               : 25 26
+BLOQUE_P             : 8 9
+CONDICION            : 12
+CONDICION_P          : 25
+EMPTY                : 24 31 35
+ESCRITURA            : 13
+ESCRITURA_P          : 15 16 17 18
+ESTATUTO             : 8 9
+EXP                  : 20 21 22 23
+EXPRESION            : 14 15 17 25 36
+EXPRESION_P          : 20
+EXP_P                : 28 29 30
+FACTOR               : 32 33 34
+TERMINO              : 28 29 30
+TERMINO_P            : 32 33 34
+TYPE                 : 3 4
+VARCTE               : 37 38 39
+VARS                 : 0
+VARS_P               : 1 2 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . VARS
+    (1) VARS -> . VAR ID VARS_P
+
+    VAR             shift and go to state 1
+
+    VARS                           shift and go to state 2
+
+state 1
+
+    (1) VARS -> VAR . ID VARS_P
+
+    ID              shift and go to state 3
+
+
+state 2
+
+    (0) S' -> VARS .
+
+
+
+state 3
+
+    (1) VARS -> VAR ID . VARS_P
+    (2) VARS_P -> . COMMA ID VARS_P
+    (3) VARS_P -> . COLON TYPE SEMICOLON
+    (4) VARS_P -> . COLON TYPE SEMICOLON VARS_P
+
+    COMMA           shift and go to state 6
+    COLON           shift and go to state 5
+
+    VARS_P                         shift and go to state 4
+
+state 4
+
+    (1) VARS -> VAR ID VARS_P .
+
+    $end            reduce using rule 1 (VARS -> VAR ID VARS_P .)
+
+
+state 5
+
+    (3) VARS_P -> COLON . TYPE SEMICOLON
+    (4) VARS_P -> COLON . TYPE SEMICOLON VARS_P
+    (5) TYPE -> . INT_TYPE
+    (6) TYPE -> . FLOAT_TYPE
+
+    INT_TYPE        shift and go to state 8
+    FLOAT_TYPE      shift and go to state 7
+
+    TYPE                           shift and go to state 9
+
+state 6
+
+    (2) VARS_P -> COMMA . ID VARS_P
+
+    ID              shift and go to state 10
+
+
+state 7
+
+    (6) TYPE -> FLOAT_TYPE .
+
+    SEMICOLON       reduce using rule 6 (TYPE -> FLOAT_TYPE .)
+
+
+state 8
+
+    (5) TYPE -> INT_TYPE .
+
+    SEMICOLON       reduce using rule 5 (TYPE -> INT_TYPE .)
+
+
+state 9
+
+    (3) VARS_P -> COLON TYPE . SEMICOLON
+    (4) VARS_P -> COLON TYPE . SEMICOLON VARS_P
+
+    SEMICOLON       shift and go to state 11
+
+
+state 10
+
+    (2) VARS_P -> COMMA ID . VARS_P
+    (2) VARS_P -> . COMMA ID VARS_P
+    (3) VARS_P -> . COLON TYPE SEMICOLON
+    (4) VARS_P -> . COLON TYPE SEMICOLON VARS_P
+
+    COMMA           shift and go to state 6
+    COLON           shift and go to state 5
+
+    VARS_P                         shift and go to state 12
+
+state 11
+
+    (3) VARS_P -> COLON TYPE SEMICOLON .
+    (4) VARS_P -> COLON TYPE SEMICOLON . VARS_P
+    (2) VARS_P -> . COMMA ID VARS_P
+    (3) VARS_P -> . COLON TYPE SEMICOLON
+    (4) VARS_P -> . COLON TYPE SEMICOLON VARS_P
+
+    $end            reduce using rule 3 (VARS_P -> COLON TYPE SEMICOLON .)
+    COMMA           shift and go to state 6
+    COLON           shift and go to state 5
+
+    VARS_P                         shift and go to state 13
+
+state 12
+
+    (2) VARS_P -> COMMA ID VARS_P .
+
+    $end            reduce using rule 2 (VARS_P -> COMMA ID VARS_P .)
+
+
+state 13
+
+    (4) VARS_P -> COLON TYPE SEMICOLON VARS_P .
+
+    $end            reduce using rule 4 (VARS_P -> COLON TYPE SEMICOLON VARS_P .)
+
